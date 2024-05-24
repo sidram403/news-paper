@@ -132,23 +132,23 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full">
+    <div className="max-w-auto flex flex-col justify-center items-center w-full h-full">
       <div className="mt-20 w-full h-[300px] bg-[#F1F1F1]">
         <p className="text-center">Advertisement </p>
-        <div className="flex justify-center py-16 px-72 items-center text-center">
+        <div className="flex justify-center py-16 px-48 items-center text-center">
           <img src={Advertisement} alt="aads image" className="w-full h-32" />
         </div>
       </div>
       <div className="flex items-center w-full">
         <div className="flex-1 h-4 bg-[#064E55]"></div>
-        <button className="bg-red-500 px-48 py-4 text-white font-bold text-[25px]">
+        <button className="bg-red-500 px-24 py-4 text-white font-bold text-[25px]">
           ख़ास ख़बर
         </button>
         <div className="flex-1 h-4 bg-[#064E55]"></div>
       </div>
       <div className="py-20 px-4 w-full h-full">
         <div className="px-20 flex gap-12 w-full">
-          <div className="w-[20%]"></div>
+          <div className="w-[10%]"></div>
           <div className="w-[50%]">
             <div>
               <img
@@ -180,7 +180,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <div className="w-[20%] flex flex-col gap-12 h-fit">
+          <div className="w-[30%] flex flex-col gap-12 h-fit">
             <div className="w-full border border-slate-500 py-4 h-fit">
             {types.map((item) => (
               <div
