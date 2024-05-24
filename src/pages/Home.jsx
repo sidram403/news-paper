@@ -22,7 +22,7 @@ const articleData = [
   {
     id: 1,
     img: ArticleCoverImg1,
-    title: "Jansatta Editorail:",
+    title: "Jansatta Editorial:",
     subtitle:
       "संपादकीय: डेयरियों में मिलावट का कारोबार और पशुओं को दवा देकर दूध का क्रूर उत्पादन.",
     published: "May 6, 2024 08:05 IST",
@@ -32,7 +32,7 @@ const articleData = [
   {
     id: 2,
     img: ArticleCoverImg2,
-    title: "Jansatta Editorail:",
+    title: "Jansatta Editorial:",
     subtitle:
       "संपादकीय: डेयरियों में मिलावट का कारोबार और पशुओं को दवा देकर दूध का क्रूर उत्पादन.",
     published: "May 6, 2024 08:05 IST",
@@ -42,7 +42,7 @@ const articleData = [
   {
     id: 3,
     img: ArticleCoverImg3,
-    title: "Jansatta Editorail:",
+    title: "Jansatta Editorial:",
     subtitle:
       "संपादकीय: डेयरियों में मिलावट का कारोबार और पशुओं को दवा देकर दूध का क्रूर उत्पादन.",
     published: "May 6, 2024 08:05 IST",
@@ -52,7 +52,7 @@ const articleData = [
   {
     id: 4,
     img: ArticleCoverImg4,
-    title: "Jansatta Editorail:",
+    title: "Jansatta Editorial:",
     subtitle:
       "संपादकीय: डेयरियों में मिलावट का कारोबार और पशुओं को दवा देकर दूध का क्रूर उत्पादन.",
     published: "May 6, 2024 08:05 IST",
@@ -62,7 +62,7 @@ const articleData = [
   {
     id: 5,
     img: ArticleCoverImg5,
-    title: "Jansatta Editorail:",
+    title: "Jansatta Editorial:",
     subtitle:
       "संपादकीय: डेयरियों में मिलावट का कारोबार और पशुओं को दवा देकर दूध का क्रूर उत्पादन.",
     published: "May 6, 2024 08:05 IST",
@@ -123,88 +123,74 @@ const types = [
     title: "मुख्य समाचार",
   },
 ];
+
 const Home = () => {
   const [activeType, setActiveType] = useState(1);
 
-  const handleTypeclick = (index, e) => {
+  const handleTypeClick = (index, e) => {
     e.preventDefault();
     setActiveType(index);
   };
 
   return (
-    <div className="max-w-auto flex flex-col justify-center items-center w-full h-full">
-      <div className="mt-20 w-full h-[300px] bg-[#F1F1F1]">
-        <p className="text-center">Advertisement </p>
-        <div className="flex justify-center py-16 px-48 items-center text-center">
+    <div className="w-full flex flex-col items-center">
+      <div className="mt-20 w-full bg-[#F1F1F1]">
+        <p className="text-center">Advertisement</p>
+        <div className="flex justify-center py-8 px-4 md:px-48 items-center text-center">
           <img src={Advertisement} alt="aads image" className="w-full h-32" />
         </div>
       </div>
-      <div className="flex items-center w-full">
+      <div className="flex items-center w-full py-4">
         <div className="flex-1 h-4 bg-[#064E55]"></div>
-        <button className="bg-red-500 px-24 py-4 text-white font-bold text-[25px]">
+        <button className="bg-red-500 px-6 md:px-24 py-2 md:py-4 text-white font-bold text-lg md:text-[25px]">
           ख़ास ख़बर
         </button>
         <div className="flex-1 h-4 bg-[#064E55]"></div>
       </div>
-      <div className="py-20 px-4 w-full h-full">
-        <div className="px-20 flex gap-12 w-full">
-          <div className="w-[10%]"></div>
-          <div className="w-[50%]">
+      <div className="py-8 md:py-20 px-4 w-full">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 w-full">
+          <div className="md:w-[10%]"></div>
+          <div className="md:w-[50%]">
             <div>
-              <img
-                src={ArticleImg}
-                alt="ArticleImg"
-                className="w-full h-[320px]"
-              />
+              <img src={ArticleImg} alt="ArticleImg" className="w-full h-auto md:h-[320px]" />
             </div>
             {articleData.map((item) => (
               <div className="py-2 w-full cursor-pointer" key={item.id}>
-                <h1 className="font-bold text-[25px]">{item.title}</h1>
-                <div className="flex gap-4 py-2">
-                  <div className="w-[70%]">
-                    <p className="font-semibold text-[16px]">{item.subtitle}</p>
-                    <p className=" text-[16px]">Updated: {item.published}</p>
-                    <p className="font-normal text-[16px]">
-                      {item.description}
-                    </p>
+                <h1 className="font-bold text-lg md:text-[25px]">{item.title}</h1>
+                <div className="flex flex-col md:flex-row gap-4 py-2">
+                  <div className="md:w-[70%]">
+                    <p className="font-semibold text-sm md:text-[16px]">{item.subtitle}</p>
+                    <p className="text-sm md:text-[16px]">Updated: {item.published}</p>
+                    <p className="font-normal text-sm md:text-[16px]">{item.description}</p>
                   </div>
-                  <div className="w-[30%]">
-                    <img
-                      src={item.img}
-                      alt="ArticleCoverImg"
-                      className="w-full h-auto"
-                    />
+                  <div className="md:w-[30%]">
+                    <img src={item.img} alt="ArticleCoverImg" className="w-full h-auto" />
                   </div>
                 </div>
                 <Divider />
               </div>
             ))}
           </div>
-          <div className="w-[30%] flex flex-col gap-12 h-fit">
-            <div className="w-full border border-slate-500 py-4 h-fit">
-            {types.map((item) => (
-              <div
-                onClick={(e) => handleTypeclick(item.id, e)}
-                key={item.id}
-                className={`flex items-center gap-1 cursor-pointer ${
-                  activeType === item.id ? "bg-red-500 text-white" : ""
-                }`}
-              >
-                <img src={item.img} alt="Icon1" className="w-16 h-16" />
-                <p className="font-semibold text-[20px]">{item.title}</p>
-              </div>
-            ))}
+          <div className="md:w-[30%] flex flex-col gap-4 md:gap-12">
+            <div className="w-full border border-slate-500 py-4">
+              {types.map((item) => (
+                <div
+                  onClick={(e) => handleTypeClick(item.id, e)}
+                  key={item.id}
+                  className={`flex items-center gap-1 cursor-pointer p-2 ${
+                    activeType === item.id ? "bg-red-500 text-white" : ""
+                  }`}
+                >
+                  <img src={item.img} alt="Icon" className="w-8 h-8 md:w-16 md:h-16" />
+                  <p className="font-semibold text-sm md:text-[20px]">{item.title}</p>
+                </div>
+              ))}
             </div>
-            <div className="w-full shadow-custom-light py-4 h-fit min-h-[400px] ">
-
-            </div>
-            
-            
-            
+            <div className="w-full shadow-custom-light py-4 min-h-[200px] md:min-h-[400px]"></div>
           </div>
         </div>
       </div>
-      <div>
+      <div className="py-4">
         <nav
           className="isolate inline-flex -space-x-px rounded-md shadow-sm"
           aria-label="Pagination"
@@ -221,9 +207,9 @@ const Home = () => {
               aria-hidden="true"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               />
             </svg>
           </a>
@@ -279,9 +265,9 @@ const Home = () => {
               aria-hidden="true"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               />
             </svg>
           </a>
