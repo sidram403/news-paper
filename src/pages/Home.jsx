@@ -17,6 +17,7 @@ import Icon7 from "../assets/icons/icon-7.png";
 import Icon8 from "../assets/icons/icon-8.png";
 import Icon9 from "../assets/icons/icon-9.png";
 import Icon10 from "../assets/icons/icon-10.png";
+import TopicDivider from "../components/TopicDivider";
 
 const articleData = [
   {
@@ -125,7 +126,7 @@ const types = [
 ];
 
 const Home = () => {
-  const [activeType, setActiveType] = useState(1);
+  const [activeType, setActiveType] = useState(3);
 
   const handleTypeClick = (index, e) => {
     e.preventDefault();
@@ -140,13 +141,7 @@ const Home = () => {
           <img src={Advertisement} alt="aads image" className="w-full h-32" />
         </div>
       </div>
-      <div className="flex items-center w-full py-4">
-        <div className="flex-1 h-4 bg-[#064E55]"></div>
-        <button className="bg-red-500 px-6 md:px-24 py-2 md:py-4 text-white font-bold text-lg md:text-[25px]">
-          ख़ास ख़बर
-        </button>
-        <div className="flex-1 h-4 bg-[#064E55]"></div>
-      </div>
+      <TopicDivider title="ख़ास ख़बर" />
       <div className="py-8 md:py-20 px-4 w-full">
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 w-full">
           <div className="md:w-[10%]"></div>
