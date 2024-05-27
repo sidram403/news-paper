@@ -12,7 +12,7 @@ function App() {
     <Header />
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/news/:id' element={<SingleNews />} />
+      <Route path='/news' element={<SingleNews />} />
     </Routes>
     
 
