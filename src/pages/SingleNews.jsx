@@ -12,7 +12,6 @@ import Icon7 from "../assets/icons/icon-7.png";
 import Icon8 from "../assets/icons/icon-8.png";
 import Icon9 from "../assets/icons/icon-9.png";
 import Icon10 from "../assets/icons/icon-10.png";
-import ArticleImg from "../assets/Article.png";
 import NewsVideo from "../assets/news-video-2.mp4";
 import SingleNewsImg1 from "../assets/single-news.png";
 import SingleNewsImg2 from "../assets/single-news-2.png";
@@ -31,6 +30,7 @@ import HorizontalImage1 from "../assets/horizontal_news_01.png";
 import HorizontalImage2 from "../assets/horizontal_news_02.png";
 import HorizontalImage3 from "../assets/horizontal_news_03.png";
 import BrandImage from "../assets/brand_name.png";
+import HeadLines from "../components/HeadLines";
 
 const types = [
   { id: 1, img: Icon1, title: "मुख्य समाचार" },
@@ -58,7 +58,7 @@ const SingleNews = () => {
       <div className="w-full h-fit relative">
         <img src={NewsImage} alt="NewsImage" className="w-full h-full" />
         <div className="absolute bottom-[20%] left-[10%]">
-          <p className="bg-black w-[600px] text-white px-2 py-2 text-[40px]">
+          <p className="bg-black  w-[300px] md:w-[600px] text-white px-2 py-2 text-[18px] md:text-[40px]">
             <span className="bg-[#F44336] font-bold rounded-lg py-1 px-1">
               BREKING NEWS:
             </span>
@@ -70,9 +70,9 @@ const SingleNews = () => {
       </div>
       <div className="w-full h-fit">
         <div className="py-8 md:py-20 px-4 w-full ">
-          <div className="flex flex-col md:flex-row px-20 gap-8 md:gap-12 w-full">
-            <div className="md:w-[30%] flex flex-col gap-2 md:gap-2 h-[500px]">
-              <div className="w-full border border-slate-500 py-4 min-h-full overflow-scroll">
+          <div className="flex flex-col md:flex-row px-4 md:px-20 gap-8 md:gap-12 w-full">
+            <div className="md:w-[30%] flex flex-col gap-2 h-[500px]">
+              <div className="w-full border border-slate-500 py-4 h-full overflow-scroll">
                 {types.map((item) => (
                   <NewsType
                     key={item.id}
@@ -84,17 +84,15 @@ const SingleNews = () => {
               </div>
             </div>
             <div className="md:w-[45%]">
-              <div className="mb-6 ml-16">
-                <p className=" font-bold text-[16px] ">
-                  {" "}
+              <div className="mb-6">
+                <p className=" font-bold text-[14px] md:text-[16px]">
                   <span className="rounded-md py-1 px-3 bg-[#F44336] text-white">
                     BREAKING:
                   </span>
-                  <span className="text-[#83B82E] py-1 px-3 ">
+                  <span className="text-[#83B82E] py-1 px-3">
                     िल्ली के मंत्री राजकुमार आनंद का इस्तीफा:
                   </span>
                   <span className="text-black">
-                    {" "}
                     पार्टी भ ोड़ी, कहा- मुझे कहीं से ऑफर नहीं; पिछले साल ED की
                     रेड पड़ी थ
                   </span>
@@ -119,49 +117,49 @@ const SingleNews = () => {
         <img
           src={AdvertiseBanner}
           alt="AdvertiseBanner"
-          className="w-full h-[350px]"
+          className="w-full h-[200px] md:h-[350px]"
         />
-        <div className="bg-gray-700 py-4 px-32">
-          <h1 className="text-center text-white font-bold text-[30px]">
+        <div className="bg-gray-700 py-4 px-4 md:px-32">
+          <h1 className="text-center text-white font-bold text-[24px] md:text-[30px]">
             एक मिनट में...
           </h1>
-          <div className="py-4 flex justify-around">
+          <div className="py-4 flex flex-wrap justify-around gap-4 md:gap-0">
             <img
               src={ShortNews1}
               alt="short news"
-              className="w-[150px] h-[300px]"
+              className="w-[150px] h-[250px] md:h-[300px]"
             />
             <img
               src={ShortNews2}
               alt="short news"
-              className="w-[150px] h-[300px]"
+              className="w-[150px] h-[250px] md:h-[300px]"
             />
             <img
               src={ShortNews3}
               alt="short news"
-              className="w-[150px] h-[300px]"
+              className="w-[150px] h-[250px] md:h-[300px]"
             />
             <img
               src={ShortNews4}
               alt="short news"
-              className="w-[170px] h-[300px]"
+              className="w-[150px] h-[250px] md:h-[300px]"
             />
             <img
               src={ShortNews5}
               alt="short news"
-              className="w-[170px] h-[300px]"
+              className="w-[150px] h-[250px] md:h-[300px]"
             />
             <img
               src={ShortNews6}
               alt="short news"
-              className="w-[170px] h-[300px]"
+              className="w-[150px] h-[250px] md:h-[300px]"
             />
           </div>
         </div>
         <div className="py-4">
           <TopicDivider title="ख़ास ख़बर" />
         </div>
-        <div className="flex justify-around py-4 px-12 items-center">
+        <div className="flex flex-col md:flex-row justify-around py-4 px-4 md:px-12 items-center gap-4 md:gap-0">
           <HorizontalNewsItem
             image={HorizontalImage1}
             brandImage={BrandImage}
@@ -179,7 +177,6 @@ const SingleNews = () => {
             title="अन्वयार्थ - दिवाळीत आनंद मिळावा; डोळे आणि कानांना इजा नको!"
             description="गणेशोत्सव आणि नवरात्र पार पडत नाही तोच दिवाळीचे वेध लागतात. वातावरण उत्सवी आणि उत्साही असते.  आनंद साजरा तर व्हायलाच हवा. मात्र, या उत्साहाचे अतिउत्साहात रूपांतर महागात पडते. गणेशोत्सव मिरवणुकीत डीजेला बंदी असतानाही ते अनेक ठिकाणी वाजवण्यात आले."
             note="संपादकीय"
-          
           />
           <HorizontalNewsItem
             image={HorizontalImage3}
@@ -189,7 +186,47 @@ const SingleNews = () => {
             title="अन्वयार्थ - दिवाळीत आनंद मिळावा; डोळे आणि कानांना इजा नको!"
             description="गणेशोत्सव आणि नवरात्र पार पडत नाही तोच दिवाळीचे वेध लागतात. वातावरण उत्सवी आणि उत्साही असते.  आनंद साजरा तर व्हायलाच हवा. मात्र, या उत्साहाचे अतिउत्साहात रूपांतर महागात पडते. गणेशोत्सव मिरवणुकीत डीजेला बंदी असतानाही ते अनेक ठिकाणी वाजवण्यात आले."
             note="संपादकीय"
-          
+          />
+        </div>
+        <div className="py-4">
+          <TopicDivider title="संपादकीय" />
+        </div>
+        <div className="py-4 px-4 md:px-32 flex flex-wrap justify-between items-center gap-4">
+          <HeadLines
+            title="दक्षिण अमेरिकेचे प्राचीन पृथ्वी संरक्षक"
+            subtitle="500 वर्षांहून अधिक काळ, स्थानिक कोगी लोक सापेक्ष एकांतात राहतात."
+          />
+          <HeadLines
+            title="दक्षिण अमेरिकेचे प्राचीन पृथ्वी संरक्षक"
+            subtitle="500 वर्षांहून अधिक काळ, स्थानिक कोगी लोक सापेक्ष एकांतात राहतात."
+          />
+          <HeadLines
+            title="दक्षिण अमेरिकेचे प्राचीन पृथ्वी संरक्षक"
+            subtitle="500 वर्षांहून अधिक काळ, स्थानिक कोगी लोक सापेक्ष एकांतात राहतात."
+          />
+          <HeadLines
+            title="दक्षिण अमेरिकेचे प्राचीन पृथ्वी संरक्षक"
+            subtitle="500 वर्षांहून अधिक काळ, स्थानिक कोगी लोक सापेक्ष एकांतात राहतात."
+          />
+          <HeadLines
+            title="दक्षिण अमेरिकेचे प्राचीन पृथ्वी संरक्षक"
+            subtitle="500 वर्षांहून अधिक काळ, स्थानिक कोगी लोक सापेक्ष एकांतात राहतात."
+          />
+          <HeadLines
+            title="दक्षिण अमेरिकेचे प्राचीन पृथ्वी संरक्षक"
+            subtitle="500 वर्षांहून अधिक काळ, स्थानिक कोगी लोक सापेक्ष एकांतात राहतात."
+          />
+          <HeadLines
+            title="दक्षिण अमेरिकेचे प्राचीन पृथ्वी संरक्षक"
+            subtitle="500 वर्षांहून अधिक काळ, स्थानिक कोगी लोक सापेक्ष एकांतात राहतात."
+          />
+          <HeadLines
+            title="दक्षिण अमेरिकेचे प्राचीन पृथ्वी संरक्षक"
+            subtitle="500 वर्षांहून अधिक काळ, स्थानिक कोगी लोक सापेक्ष एकांतात राहतात."
+          />
+          <HeadLines
+            title="दक्षिण अमेरिकेचे प्राचीन पृथ्वी संरक्षक"
+            subtitle="500 वर्षांहून अधिक काळ, स्थानिक कोगी लोक सापेक्ष एकांतात राहतात."
           />
         </div>
       </div>
