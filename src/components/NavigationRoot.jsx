@@ -2,7 +2,7 @@ import React from 'react'
 
 const NavigationRoot = () => {
   return (
-    <div>Home</div>
+    <div className='text-red'>Home</div>
   )
 }
 

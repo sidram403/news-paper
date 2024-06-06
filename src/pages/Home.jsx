@@ -18,6 +18,8 @@ import Icon8 from "../assets/icons/icon-8.png";
 import Icon9 from "../assets/icons/icon-9.png";
 import Icon10 from "../assets/icons/icon-10.png";
 import TopicDivider from "../components/TopicDivider";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 const articleData = [
   {
@@ -134,140 +136,166 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <div className="mt-20 w-full bg-[#F1F1F1]">
-        <p className="text-center">Advertisement</p>
-        <div className="flex justify-center py-8 px-4 md:px-48 items-center text-center">
-          <img src={Advertisement} alt="aads image" className="w-full h-32" />
-        </div>
-      </div>
-      <TopicDivider title="ख़ास ख़बर" />
-      <div className="py-8 md:py-20 px-4 w-full">
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12 w-full">
-          <div className="md:w-[10%]"></div>
-          <div className="md:w-[50%]">
-            <div>
-              <img src={ArticleImg} alt="ArticleImg" className="w-full h-auto md:h-[320px]" />
-            </div>
-            {articleData.map((item) => (
-              <div className="py-2 w-full cursor-pointer" key={item.id}>
-                <h1 className="font-bold text-lg md:text-[25px]">{item.title}</h1>
-                <div className="flex flex-col md:flex-row gap-4 py-2">
-                  <div className="md:w-[70%]">
-                    <p className="font-semibold text-sm md:text-[16px]">{item.subtitle}</p>
-                    <p className="text-sm md:text-[16px]">Updated: {item.published}</p>
-                    <p className="font-normal text-sm md:text-[16px]">{item.description}</p>
-                  </div>
-                  <div className="md:w-[30%]">
-                    <img src={item.img} alt="ArticleCoverImg" className="w-full h-auto" />
-                  </div>
-                </div>
-                <Divider />
-              </div>
-            ))}
+    <div>
+      <Header />
+      <div className="w-full flex flex-col items-center">
+        <div className="mt-20 w-full bg-[#F1F1F1]">
+          <p className="text-center">Advertisement</p>
+          <div className="flex justify-center py-8 px-4 md:px-48 items-center text-center">
+            <img src={Advertisement} alt="aads image" className="w-full h-32" />
           </div>
-          <div className="md:w-[30%] flex flex-col gap-4 md:gap-12">
-            <div className="w-full border border-slate-500 py-4">
-              {types.map((item) => (
-                <div
-                  onClick={(e) => handleTypeClick(item.id, e)}
-                  key={item.id}
-                  className={`flex items-center gap-1 cursor-pointer p-2 ${
-                    activeType === item.id ? "bg-red-500 text-white" : ""
-                  }`}
-                >
-                  <img src={item.img} alt="Icon" className="w-8 h-8 md:w-16 md:h-16" />
-                  <p className="font-semibold text-sm md:text-[20px]">{item.title}</p>
+        </div>
+        <TopicDivider title="ख़ास ख़बर" />
+        <div className="py-8 md:py-20 px-4 w-full">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 w-full">
+            <div className="md:w-[10%]"></div>
+            <div className="md:w-[50%]">
+              <div>
+                <img
+                  src={ArticleImg}
+                  alt="ArticleImg"
+                  className="w-full h-auto md:h-[320px]"
+                />
+              </div>
+              {articleData.map((item) => (
+                <div className="py-2 w-full cursor-pointer" key={item.id}>
+                  <h1 className="font-bold text-lg md:text-[25px]">
+                    {item.title}
+                  </h1>
+                  <div className="flex flex-col md:flex-row gap-4 py-2">
+                    <div className="md:w-[70%]">
+                      <p className="font-semibold text-sm md:text-[16px]">
+                        {item.subtitle}
+                      </p>
+                      <p className="text-sm md:text-[16px]">
+                        Updated: {item.published}
+                      </p>
+                      <p className="font-normal text-sm md:text-[16px]">
+                        {item.description}
+                      </p>
+                    </div>
+                    <div className="md:w-[30%]">
+                      <img
+                        src={item.img}
+                        alt="ArticleCoverImg"
+                        className="w-full h-auto"
+                      />
+                    </div>
+                  </div>
+                  <Divider />
                 </div>
               ))}
             </div>
-            <div className="w-full shadow-custom-light py-4 min-h-[200px] md:min-h-[400px]"></div>
+            <div className="md:w-[30%] flex flex-col gap-4 md:gap-12">
+              <div className="w-full border border-slate-500 py-4">
+                {types.map((item) => (
+                  <div
+                    onClick={(e) => handleTypeClick(item.id, e)}
+                    key={item.id}
+                    className={`flex items-center gap-1 cursor-pointer p-2 ${
+                      activeType === item.id ? "bg-red-500 text-white" : ""
+                    }`}
+                  >
+                    <img
+                      src={item.img}
+                      alt="Icon"
+                      className="w-8 h-8 md:w-16 md:h-16"
+                    />
+                    <p className="font-semibold text-sm md:text-[20px]">
+                      {item.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="w-full shadow-custom-light py-4 min-h-[200px] md:min-h-[400px]"></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="py-4">
-        <nav
-          className="isolate inline-flex -space-x-px rounded-md shadow-sm"
-          aria-label="Pagination"
-        >
-          <a
-            href="#"
-            className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+        <div className="py-4">
+          <nav
+            className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+            aria-label="Pagination"
           >
-            <span className="sr-only">Previous</span>
-            <svg
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
+            <a
+              href="#"
+              className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
-              <path
-                fillRule="evenodd"
-                d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
-          <a
-            href="#"
-            aria-current="page"
-            className="relative z-10 inline-flex items-center bg-slate-300 px-4 py-2 text-sm font-normal text-black focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            1
-          </a>
-          <a
-            href="#"
-            className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-          >
-            2
-          </a>
-          <a
-            href="#"
-            className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
-          >
-            3
-          </a>
-          <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">
-            ...
-          </span>
-          <a
-            href="#"
-            className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
-          >
-            8
-          </a>
-          <a
-            href="#"
-            className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-          >
-            9
-          </a>
-          <a
-            href="#"
-            className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-          >
-            10
-          </a>
-          <a
-            href="#"
-            className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-          >
-            <span className="sr-only">Next</span>
-            <svg
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
+              <span className="sr-only">Previous</span>
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              aria-current="page"
+              className="relative z-10 inline-flex items-center bg-slate-300 px-4 py-2 text-sm font-normal text-black focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              <path
-                fillRule="evenodd"
-                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
-        </nav>
+              1
+            </a>
+            <a
+              href="#"
+              className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            >
+              2
+            </a>
+            <a
+              href="#"
+              className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
+            >
+              3
+            </a>
+            <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">
+              ...
+            </span>
+            <a
+              href="#"
+              className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
+            >
+              8
+            </a>
+            <a
+              href="#"
+              className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            >
+              9
+            </a>
+            <a
+              href="#"
+              className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            >
+              10
+            </a>
+            <a
+              href="#"
+              className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            >
+              <span className="sr-only">Next</span>
+              <svg
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </a>
+          </nav>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };
