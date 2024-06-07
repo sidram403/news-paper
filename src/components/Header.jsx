@@ -3,8 +3,11 @@ import Logo from "../assets/logo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Header = () => {
+  const { currentUser } = useSelector((state) => state.user);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -32,9 +35,20 @@ const Header = () => {
       </div>
         <div className="flex items-center gap-4">
           <SearchIcon className="cursor-pointer" />
-          <button className="bg-white py-2 px-8 rounded-3xl text-black cursor-pointer">
+          
+          <Link to='/profile'>
+            {currentUser ? (
+              <img
+                className='rounded-full h-7 w-7 object-cover'
+                src={currentUser.avatar}
+                alt='profile'
+              />
+            ) : (
+              <button className="bg-white py-2 px-8 rounded-3xl text-black cursor-pointer">
             लॉगिन करें
           </button>
+            )}
+          </Link>
           <div className="inline md:hidden cursor-pointer" onClick={toggleMenu}>
           <MenuIcon  />
 

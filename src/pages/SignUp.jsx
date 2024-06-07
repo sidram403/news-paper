@@ -1,10 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../assets/logo.png";
 import GoogleIcon from "../assets/icons/google_icon.png";
 import { Divider} from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 const SignUp = () => {
+  const [formData, setFormData] = useState({});
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+      role:'user'
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const res = await fetch('/server/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.success === false) {
+        setLoading(false);
+        setError(data.message);
+        return;
+      }
+      setLoading(false);
+      setError(null);
+      navigate('/login');
+    } catch (error) {
+      setLoading(false);
+      setError(error.message);
+    }
+  };
 
    
 
@@ -22,18 +60,17 @@ const SignUp = () => {
           <h2 className="text-5xl font-bold text-center mb-6 text-red-500 uppercase">
             Sign Up
           </h2>
-          <div className="w-1/2 mx-32 flex items-center justify-center text-center gap-2 border border-red-500 px-4 py-2 rounded-md">
-            <img src={GoogleIcon} alt="google icon" className="w-8 h-8" />
-            <p className="text-gray-700">Sign up with Google</p>
-          </div>
+          <OAuth />
           <Divider className="text-gray-700 py-4 text-[12px]">Sign up with Email</Divider>
 
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
           <div>
               <label className="block text-gray-700 font-semibold">Username</label>
               <input
-                type="email"
+                type="text"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                id="username"
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -41,6 +78,8 @@ const SignUp = () => {
               <input
                 type="email"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                id="email"
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -48,6 +87,8 @@ const SignUp = () => {
               <input
                 type="password"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                id="password"
+                onChange={handleChange}
               />
               
             </div>

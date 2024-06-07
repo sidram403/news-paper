@@ -1,12 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../assets/logo.png";
-import GoogleIcon from "../assets/icons/google_icon.png";
 import { Divider} from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signInFailure, signInStart, signInSuccess } from "../redux/user/userSlice.js";
+import OAuth from "../components/OAuth";
 
 const SignIn = () => {
+  const [formData, setFormData] = useState({});
+  const { loading, error } = useSelector((state) => state.user);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-   
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      dispatch(signInStart());
+      const res = await fetch("/server/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Referrer-Policy": "strict-origin-when-cross-origin"
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await res.json();
+      console.log(data);
+      if (data.success === false) {
+        dispatch(signInFailure(data.message));
+        return;
+      }
+      dispatch(signInSuccess(data));
+      navigate('/');
+    } catch (error) {
+      dispatch(signInFailure(error.message));
+
+    }
+
+  };
 
   return (
     <div className="flex h-screen">
@@ -22,18 +61,17 @@ const SignIn = () => {
           <h2 className="text-5xl font-bold text-center mb-6 text-red-500 uppercase">
             Log in
           </h2>
-          <div className="w-1/2 mx-32 flex items-center justify-center text-center gap-2 border border-red-500 px-4 py-2 rounded-md">
-            <img src={GoogleIcon} alt="google icon" className="w-8 h-8" />
-            <p className="text-gray-700">Sign in with Google</p>
-          </div>
+          <OAuth />
           <Divider className="text-gray-700 py-4 text-[12px]">Sign in with Email</Divider>
 
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-gray-700 font-semibold">Email</label>
               <input
                 type="email"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                id='email'
+          onChange={handleChange}
               />
             </div>
             <div>
@@ -41,6 +79,8 @@ const SignIn = () => {
               <input
                 type="password"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                id="password"
+                onChange={handleChange}
               />
               <div className="py-2">
                 <p className="text-red-500 text-[12px] font-bold cursor-pointer">Forget Password</p>
@@ -52,13 +92,14 @@ const SignIn = () => {
                 type="submit"
                 className="mx-32 w-1/2 px-4 py-2 bg-red-500 text-white rounded-md font-bold hover:bg-red-600 "
               >
-                Sign in
+                {'Sign in'}
               </button>
             </div>
             <div className="w-full mx-32">
                 <p className="text-[14px]">Create a new Account ? <Link to={'/signup'}> <span className="cursor-pointer text-blue-500">Sign up</span></Link></p>
             </div>
           </form>
+          {error && <p className='text-red-500 mt-5'>{error}</p>}
         </div>
       </div>
     </div>
